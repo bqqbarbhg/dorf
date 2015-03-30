@@ -1,8 +1,8 @@
-#include <cstdio>
+#include <Windows.h>
 
-int main(int argc, char** argv)
+int CALLBACK WinMain(HINSTANCE instance, HINSTANCE prevInstance, LPSTR cmdLine, int cmdShow)
 {
-	puts("Hello world :D");
+	MessageBox(NULL, "Hello world", "Winapi box", 0);
 	return 0;
 }
 
