@@ -47,6 +47,10 @@ int CALLBACK WinMain(HINSTANCE instance, HINSTANCE prevInstance, LPSTR cmdLine, 
 	ATOM main_class = RegisterClassA(&wnd_class);
 	if (!main_class) return 1;
 
+	typedef void (*render_t)();
+	HINSTANCE module = LoadLibrary("frontend_gl.dll");
+	render_t render = (render_t)GetProcAddress(module, "render");
+
 	HWND window = CreateWindowExA(
 		0, MAKEINTATOM(main_class),
 		"Test Window",
@@ -65,8 +69,7 @@ int CALLBACK WinMain(HINSTANCE instance, HINSTANCE prevInstance, LPSTR cmdLine, 
 		}
 		Sleep(10);
 
-		glClearColor(0x64/255.0f, 0x95/255.0f, 0xED/255.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		render();
 
 		SwapBuffers(GetDC(window));
 	}
