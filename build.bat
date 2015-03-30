@@ -7,6 +7,7 @@ set IgnoreWarn= -wd4100
 set CLFlags= -MT -nologo -Od -W4 -WX -Zi %IgnoreWarn%
 set LDFlags= -opt:ref user32.lib 
 
+cl %CLFlags% ../src/frontend_gl.cpp /link /DLL /OUT:frontend_gl.dll
 cl %CLFlags% ../src/main_gl_win32.cpp /link %LDFlags% -subsystem:windows 
 cd ..
 
